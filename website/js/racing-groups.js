@@ -73,7 +73,7 @@ $(function() {
 });
 
 function on_n_pack_trophies_change(write_setting = true) {
-  var ntrophies = $("#n-pack").val();
+  var ntrophies = Number($("#n-pack").val());
   if (write_setting) {
     $.ajax('action.php',
            {type: 'POST',
@@ -124,6 +124,9 @@ $(function() {
 });
 
 function poll_for_structure() {
+  // This function only gets called when the page first loads or when
+  // changes are made.  No need to worry about processing a 'cease'
+  // flag.
   $.ajax('action.php',
          {type: 'GET',
           data: {query: 'poll',
